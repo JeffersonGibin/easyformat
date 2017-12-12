@@ -6,14 +6,12 @@
     "test": "mocha"
   },
   "author": "Jefferson Gibin",
-  "license": "ISC",
-  "dependencies": {
-    "chai": "^4.1.2",
-    "mocha": "^4.0.1"
-  },
+  "license": "MIT",
   "directories": {
     "test": "test"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "mocha": "^4.0.1"
+  },
   "description": ""
 }
