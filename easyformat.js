@@ -2,7 +2,11 @@
 var easyformat = (() => {	
 	var publicFunctions = {};
 
-
+	/**
+	* @description Check if date is date valid
+	* @param {String|Object} input String or instance of Object Date
+	* @return {boolean} If return true, date Valid otherwise false
+	*/
 	publicFunctions.isDate = (input) => {
 		let dateValided;
 
@@ -26,7 +30,16 @@ var easyformat = (() => {
 		return  true;
 	};
 
-
+	/**
+	* @description Must extract part of date to Year, Month or Day
+	* @param {String|Object} input Must to be String or instance of Object Date
+	* @param {String} part Is a element of a date
+	* @return {String} return part of a date (e.g, Year, Month, Day)
+	* @exemple
+	* // extractDatePart('2017-12-08', 'd') return day
+	* // extractDatePart('2017-12-08', 'm') return month
+	* // extractDatePart('2017-12-08', 'y') return year
+	*/
 	publicFunctions.extractDatePart = (input, part) => {
 		if(!publicFunctions.isDate(input)) return false;
 
@@ -41,7 +54,12 @@ var easyformat = (() => {
 		return dateManipulation[part];
 	};
 
-
+	/**
+	* @description Convert Date to format a wanted
+	* @param {String|Object} input String or instance of Object Date
+	* @param {String} formatDate Date Format 
+	* @return {String} Must to return a date with pattern the informed in formatDate
+	*/
 	publicFunctions.formatDate = (input, formatDate) => {
 		if(!publicFunctions.isDate(input)) return false;
 
