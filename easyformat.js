@@ -55,23 +55,29 @@ var easyformat = (() => {
 	};
 
 	/**
-	* @description Convert Date to format a wanted
+	* @description  Convert Date to format a wanted
 	* @param {String|Object} input String or instance of Object Date
-	* @param {String} formatDate Date Format 
-	* @return {String} Must to return a date with pattern the informed in formatDate
+	* @param {String} mask Mask
+	* @return {String} input Date formatted
+	* @throws {String} Invalid Mask!
 	*/
-	publicFunctions.formatDate = (input, formatDate) => {
+	publicFunctions.dateFormat = (input, mask) => {
 		if(!publicFunctions.isDate(input)) return false;
 
-		let dateManipulation = {
-			d : publicFunctions.extractDatePart(input, 'd'),
-			m : publicFunctions.extractDatePart(input, 'm'),
-			y : publicFunctions.extractDatePart(input, 'y')
+		let maskAllowed = {
+			'd' : publicFunctions.extractDatePart(input, 'd'),
+			'm' : publicFunctions.extractDatePart(input, 'm'),
+			'y' : publicFunctions.extractDatePart(input, 'y')
 		};
 
-		return formatDate.replace(/[^-?\/]/gi, function(str){
-			return dateManipulation[str];
-		});
+		return mask.replace(/[^-?\/]/gi, function(match){
+
+			if(!maskAllowed[match]){
+				throw  {msg : 'Invalid Mask!', usedMask : mask, value : input};
+			}
+			
+			return maskAllowed[match];
+		}) ;
 	};
 
 	return publicFunctions;
